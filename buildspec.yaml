@@ -9,7 +9,7 @@ phases:
     commands:
       - echo Building the Docker image...
       - docker pull $BASE_IMAGE_URI
-      - docker build --build-arg BASE_IMAGE=$BASE_IMAGE_URI --build-arg WAR_FILE=app.war -t $TARGET_REPO_URI:latest .
+      - docker build -t $TARGET_REPO_URI:latest .
   post_build:
     commands:
       - echo Pushing the Docker image to ECR...
