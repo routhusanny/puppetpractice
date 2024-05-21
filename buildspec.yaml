@@ -5,14 +5,11 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $(echo $BASE_IMAGE_URI | cut -d'/' -f1)
-      - echo Downloading WAR file from S3...
-      - aws s3 cp s3://$S3_WAR_BUCKET/$S3_WAR_KEY app.war
   build:
     commands:
       - echo Building the Docker image...
       - docker pull $BASE_IMAGE_URI
       - docker build --build-arg BASE_IMAGE=$BASE_IMAGE_URI --build-arg WAR_FILE=app.war -t $TARGET_REPO_URI:latest .
-      - docker tag $TARGET_REPO_URI:latest $TARGET_REPO_URI:latest
   post_build:
     commands:
       - echo Pushing the Docker image to ECR...
