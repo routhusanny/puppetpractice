@@ -8,7 +8,6 @@ phases:
   build:
     commands:
       - echo Building the Docker image...
-      - docker pull $BASE_IMAGE_URI
       - docker build -t $TARGET_REPO_URI:latest .
   post_build:
     commands:
