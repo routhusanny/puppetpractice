@@ -13,3 +13,7 @@ phases:
     commands:
       - echo Pushing the Docker image to ECR...
       - docker push $TARGET_REPO_URI:latest
+      - printf '[{"name":"app_container","imageUri":"%s"}]\n' "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$REPO_NAME:$IMAGE_TAG" > imagedefinitions.json
+  artifacts:
+    files:
+      - imagedefinitions.json 
