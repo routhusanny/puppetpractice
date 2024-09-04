@@ -13,7 +13,3 @@ phases:
     commands:
       - echo Pushing the Docker image to ECR...
       - docker push $TARGET_REPO_URI:latest
-artifacts:
-  files:
-    - '**/*'
-  discard-paths: yes
